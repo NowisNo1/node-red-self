@@ -1,0 +1,105 @@
+{
+  "_args": [
+    [
+      "@node-red/editor-api@3.0.2",
+      "D:\\Jetlinks\\jetlinks-ui-antd"
+    ]
+  ],
+  "_from": "@node-red/editor-api@3.0.2",
+  "_id": "@node-red/editor-api@3.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-eyWObGLXVKhQDOHX9Fe+oOhC5nZAU8A92M5f4BwCXY1c9wx8QnWZVqOhPleVu3UJxZJEZ44OUdPb+HtsRNmD7Q==",
+  "_location": "/@node-red/editor-api",
+  "_phantomChildren": {
+    "accepts": "1.3.8",
+    "append-field": "1.0.0",
+    "concat-stream": "1.6.2",
+    "content-disposition": "0.5.4",
+    "content-type": "1.0.4",
+    "cookie": "0.5.0",
+    "cookie-signature": "1.0.6",
+    "ee-first": "1.1.1",
+    "encodeurl": "1.0.2",
+    "escape-html": "1.0.3",
+    "etag": "1.8.1",
+    "finalhandler": "1.2.0",
+    "fresh": "0.5.2",
+    "inherits": "2.0.4",
+    "merge-descriptors": "1.0.1",
+    "methods": "1.1.2",
+    "mkdirp": "0.5.6",
+    "object-assign": "4.1.1",
+    "parseurl": "1.3.3",
+    "proxy-addr": "2.0.7",
+    "qs": "6.10.3",
+    "range-parser": "1.2.1",
+    "safe-buffer": "5.2.1",
+    "safer-buffer": "2.1.2",
+    "type-is": "1.6.18",
+    "unpipe": "1.0.0",
+    "utils-merge": "1.0.1",
+    "vary": "1.1.2",
+    "xtend": "4.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@node-red/editor-api@3.0.2",
+    "name": "@node-red/editor-api",
+    "escapedName": "@node-red%2feditor-api",
+    "scope": "@node-red",
+    "rawSpec": "3.0.2",
+    "saveSpec": null,
+    "fetchSpec": "3.0.2"
+  },
+  "_requiredBy": [
+    "/node-red"
+  ],
+  "_resolved": "https://registry.npmmirror.com/@node-red/editor-api/-/editor-api-3.0.2.tgz",
+  "_spec": "3.0.2",
+  "_where": "D:\\Jetlinks\\jetlinks-ui-antd",
+  "bugs": {
+    "url": "https://github.com/node-red/node-red/issues"
+  },
+  "contributors": [
+    {
+      "name": "Nick O'Leary"
+    },
+    {
+      "name": "Dave Conway-Jones"
+    }
+  ],
+  "dependencies": {
+    "@node-red/editor-client": "3.0.2",
+    "@node-red/util": "3.0.2",
+    "bcrypt": "5.0.1",
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.20.0",
+    "clone": "2.1.2",
+    "cors": "2.8.5",
+    "express": "4.18.1",
+    "express-session": "1.17.3",
+    "memorystore": "1.6.7",
+    "mime": "3.0.0",
+    "multer": "1.4.5-lts.1",
+    "mustache": "4.2.0",
+    "oauth2orize": "1.11.1",
+    "passport": "0.6.0",
+    "passport-http-bearer": "1.0.1",
+    "passport-oauth2-client-password": "0.1.2",
+    "ws": "7.5.6"
+  },
+  "description": "@node-red/editor-api ====================",
+  "homepage": "https://github.com/node-red/node-red#readme",
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "name": "@node-red/editor-api",
+  "optionalDependencies": {
+    "bcrypt": "5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-red/node-red.git"
+  },
+  "version": "3.0.2"
+}

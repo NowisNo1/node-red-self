@@ -1,0 +1,64 @@
+{
+  "_args": [
+    [
+      "@node-red/registry@3.0.2",
+      "D:\\Jetlinks\\jetlinks-ui-antd"
+    ]
+  ],
+  "_from": "@node-red/registry@3.0.2",
+  "_id": "@node-red/registry@3.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-+vf9R4j+p2nM7awzicIzu6liJgXyoQfhHGv3OxmK9OfBsISn5eWIj9u2HiJtG3ChYfuediK2FEhc+Pb+mhfTJA==",
+  "_location": "/@node-red/registry",
+  "_phantomChildren": {
+    "fs-minipass": "2.1.0",
+    "graceful-fs": "4.2.10",
+    "minizlib": "2.1.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@node-red/registry@3.0.2",
+    "name": "@node-red/registry",
+    "escapedName": "@node-red%2fregistry",
+    "scope": "@node-red",
+    "rawSpec": "3.0.2",
+    "saveSpec": null,
+    "fetchSpec": "3.0.2"
+  },
+  "_requiredBy": [
+    "/@node-red/runtime"
+  ],
+  "_resolved": "https://registry.npmmirror.com/@node-red/registry/-/registry-3.0.2.tgz",
+  "_spec": "3.0.2",
+  "_where": "D:\\Jetlinks\\jetlinks-ui-antd",
+  "bugs": {
+    "url": "https://github.com/node-red/node-red/issues"
+  },
+  "contributors": [
+    {
+      "name": "Nick O'Leary"
+    },
+    {
+      "name": "Dave Conway-Jones"
+    }
+  ],
+  "dependencies": {
+    "@node-red/util": "3.0.2",
+    "clone": "2.1.2",
+    "fs-extra": "10.1.0",
+    "semver": "7.3.7",
+    "tar": "6.1.11",
+    "uglify-js": "3.16.3"
+  },
+  "description": "@node-red/registry ====================",
+  "homepage": "https://github.com/node-red/node-red#readme",
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "name": "@node-red/registry",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-red/node-red.git"
+  },
+  "version": "3.0.2"
+}

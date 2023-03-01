@@ -1,0 +1,52 @@
+{
+  "_args": [
+    [
+      "@node-red/editor-client@3.0.2",
+      "D:\\Jetlinks\\jetlinks-ui-antd"
+    ]
+  ],
+  "_from": "@node-red/editor-client@3.0.2",
+  "_id": "@node-red/editor-client@3.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-UlbsoEnIfpQO0yKf55Kd2qCwItDjfM9ut6FUfd2x10yKk9RxrA1rQPsW7PiB7gV/E1aW1JPmMxrmfHbb9Gdf8w==",
+  "_location": "/@node-red/editor-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@node-red/editor-client@3.0.2",
+    "name": "@node-red/editor-client",
+    "escapedName": "@node-red%2feditor-client",
+    "scope": "@node-red",
+    "rawSpec": "3.0.2",
+    "saveSpec": null,
+    "fetchSpec": "3.0.2"
+  },
+  "_requiredBy": [
+    "/@node-red/editor-api"
+  ],
+  "_resolved": "https://registry.npmmirror.com/@node-red/editor-client/-/editor-client-3.0.2.tgz",
+  "_spec": "3.0.2",
+  "_where": "D:\\Jetlinks\\jetlinks-ui-antd",
+  "bugs": {
+    "url": "https://github.com/node-red/node-red/issues"
+  },
+  "contributors": [
+    {
+      "name": "Nick O'Leary"
+    },
+    {
+      "name": "Dave Conway-Jones"
+    }
+  ],
+  "description": "@node-red/editor-client ====================",
+  "homepage": "https://github.com/node-red/node-red#readme",
+  "license": "Apache-2.0",
+  "main": "./index.js",
+  "name": "@node-red/editor-client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-red/node-red.git"
+  },
+  "version": "3.0.2"
+}
