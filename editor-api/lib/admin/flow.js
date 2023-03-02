@@ -34,15 +34,30 @@ module.exports = {
         })
     },
     post: function(req,res) {
-        var opts = {
+
+          var opts = {
             user: req.user,
             flow: req.body,
             req: apiUtils.getRequestLogObject(req)
+          }
+          console.log("opts ------> ", opts)
+      /*
+        {
+          user: undefined, -> 不必要
+          flow: {},
+          req: { user: ${user}, path: '/flow', ip: '::/1' } -> ip 可能需要变换
         }
+
+       */
+
+
+
+
         runtimeAPI.flows.addFlow(opts).then(function(id) {
             return res.json({id:id});
         }).catch(function(err) {
             apiUtils.rejectHandler(req,res,err);
+            console.log(err)
         })
     },
     put: function(req,res) {

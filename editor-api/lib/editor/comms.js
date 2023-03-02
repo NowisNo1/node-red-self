@@ -36,6 +36,10 @@ var anonymousUser;
 var heartbeatTimer;
 var lastSentTime;
 
+
+
+
+
 function init(_server,_settings,_runtimeAPI) {
     server = _server;
     settings = _settings;
@@ -57,7 +61,7 @@ function handleSessionExpiry(session) {
 }
 
 function CommsConnection(ws, user) {
-   
+
     this.session = crypto.randomBytes(32).toString('base64');
     this.ws = ws;
     this.stack = [];

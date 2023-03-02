@@ -7420,7 +7420,7 @@ RED.nodes.fontAwesome = (function() {
  * limitations under the License.
  **/
 
-/** 
+/**
  * An API for undo / redo history buffer
  * @namespace RED.history
 */
@@ -15269,8 +15269,8 @@ RED.stack = (function() {
     });
     function parseInteger(input, def, min, max) {
         if(input == null) { return (def || 0); }
-        min = min == null ? Number.NEGATIVE_INFINITY : min; 
-        max = max == null ? Number.POSITIVE_INFINITY : max; 
+        min = min == null ? Number.NEGATIVE_INFINITY : min;
+        max = max == null ? Number.POSITIVE_INFINITY : max;
         let n = parseInt(input);
         if(isNaN(n) || n < min || n > max) { n = def || 0; }
         return n;
@@ -15886,6 +15886,7 @@ RED.deploy = (function() {
 
         deployInflight = true;
         shadeShow();
+
         $.ajax({
             url: "flows",
             type: "POST",
@@ -15895,6 +15896,7 @@ RED.deploy = (function() {
                 "Node-RED-Deployment-Type": deploymentType
             }
         }).done(function (data, textStatus, xhr) {
+
             RED.nodes.dirty(false);
             RED.nodes.version(data.rev);
             RED.nodes.originalFlow(nns);
@@ -18554,7 +18556,7 @@ RED.keyboard = (function() {
                     return resolveKeyEvent(evt);
                 }
                 if (Object.keys(handler).length > 0) {
-                    // check if there's a potential combined handler initiated by this keyCode 
+                    // check if there's a potential combined handler initiated by this keyCode
                     for (let h in handler) {
                         if (matchHandlerToEvent(evt,handler[h]) > -1) {
                             partialState = handler;
@@ -35213,7 +35215,7 @@ RED.editor = (function() {
     });
 
     /**
-     * Compares `newValue` with `originalValue` for equality.  
+     * Compares `newValue` with `originalValue` for equality.
      * @param {*} originalValue Original value
      * @param {*} newValue New value
      * @returns {boolean} true if originalValue equals newValue, otherwise false
@@ -35221,7 +35223,7 @@ RED.editor = (function() {
      function isEqual(originalValue, newValue) {
         try {
             if(originalValue == newValue) {
-                return true; 
+                return true;
             }
             return JSON.stringify(originalValue) === JSON.stringify(newValue);
         } catch (err) {
@@ -38161,7 +38163,7 @@ RED.editor.codeEditor.ace = (function() {
     var initOptions = {};
 
     function init(options) {
-        initOptions = options || {}; 
+        initOptions = options || {};
         initialised = true;
         return initialised;
     }
@@ -39105,7 +39107,7 @@ RED.editor.codeEditor.monaco = (function() {
             return mode;
         }
 
-        
+
         if(!options.stateId && options.stateId !== false) {
             options.stateId = RED.editor.generateViewStateId("monaco", options, (options.mode || options.title || "").split("/").pop());
         }
@@ -40088,7 +40090,7 @@ RED.eventLog = (function() {
                     } else if(options.focusElement !== false) {
                         //focusElement IS specified, focus that instead (if not false)
                         $(options.focusElement).trigger("focus");
-                    } 
+                    }
 
                 },150);
                 el.css({right:0});
@@ -42038,7 +42040,7 @@ RED.library = (function() {
                             }).show();
 
                         }).appendTo(itemTools);
-                    
+
                     itemTools.appendTo(item.treeList.label);
                 }
             });

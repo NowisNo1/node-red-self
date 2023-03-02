@@ -95,6 +95,131 @@ function init(userSettings,httpServer,_adminApi) {
     }
     redNodes.init(runtime);
     externalAPI.init(runtime);
+
+  const MyWebSocket = require("ws");
+  let WebSocketBetweenSpringboot = null;
+  /**
+   * @createTime 2023-03-02
+   * @comment 启动时直接启动 node-red 与 后端的连接，从而实现基本的功能
+   * 必须要传入id
+   * @keyWord 627db5fe50b714af
+   */
+  function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0,
+        v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  const uuid = guid();
+  const MyWebSocketUrl = 'ws://localhost:8848/local/ws?type=' + "server&" + 'id=' + uuid;
+  // @keyWord 627db5fe50b714af
+  let initFinished = false;  // 完全启动完毕才可以进行工作
+  let maxWaitTimeInSeconds = 10; // 一般 10s 就可以， 9s 有时候会出问题
+  let intervalInMilliseconds = 2000; // 每过 2s 进行检测
+  /**
+   * 设置时间间隔对启动结果进行监听
+   * 确认启动后清除这个监听
+   * @type {number}
+   */
+  let checkApiStart = setInterval(() => {
+      externalAPI.isStarted().then((v) =>{
+          if(v){
+            clearInterval(checkApiStart);
+            initFinished = true
+          }else{
+            maxWaitTimeInSeconds = Math.max(0, maxWaitTimeInSeconds * 1000 - intervalInMilliseconds) / 1000;
+          }
+        })
+      }, intervalInMilliseconds);
+  // @keyWord 627db5fe50b714af
+  function GetOpts(path, label, info){
+      const tmp = {
+        "nodes": [],
+        "info": info,
+        "disabled": false,
+        "env": [],
+        "label": label
+      };
+      const req = {
+        "user" : undefined,
+        "path" : path,
+        "ip": '::/1'
+      };
+      const opts = {
+        "user" : undefined,
+        "flow" : tmp,
+        "req" : req
+      };
+      return opts;
+  }
+
+  function getMyWS(){
+    if(!WebSocketBetweenSpringboot){
+      WebSocketBetweenSpringboot = new MyWebSocket(MyWebSocketUrl);
+      WebSocketBetweenSpringboot.onopen = function(){
+        console.log('open', uuid);
+      };
+      WebSocketBetweenSpringboot.onerror = function(event){
+        console.log("与 springboot 失去联系")
+      };
+      WebSocketBetweenSpringboot.onmessage = function(event){
+        let msg = JSON.parse(event.data);
+        console.log(msg);
+        if(msg.type === "json"){
+          const flowOption = msg.option;
+          const instanceId = msg.instanceId;
+          const instanceName = msg.instanceName;
+          const instanceInfo = msg.instanceInfo;
+          switch(flowOption){
+            case 'add':
+              if(initFinished){
+                //  直接执行
+                externalAPI.flows.addFlow(GetOpts("/flow", instanceName, instanceInfo)).then((id) =>{
+                  const ret = {
+                    "type": "cmd",
+                    "result": "success",
+                    "flowId": id,
+                    "instanceId": instanceId,
+                    "option": flowOption
+                  };
+                  console.log(JSON.stringify(ret));
+                  WebSocketBetweenSpringboot.send(JSON.stringify(ret));
+                });
+              }else{
+                //  等待后执行
+                setTimeout(() =>{
+                  externalAPI.flows.addFlow(GetOpts("/flow", instanceName, instanceInfo)).then((id) =>{
+                    const ret = {
+                      "type": "cmd",
+                      "result": "success",
+                      "flowId": id,
+                      "instanceId": instanceId,
+                      "option": flowOption
+                    };
+                    console.log(JSON.stringify(ret));
+                    WebSocketBetweenSpringboot.send(JSON.stringify(ret));
+                  })
+                }, maxWaitTimeInSeconds * 1000)
+              }
+              break;
+            default:
+          }
+        }
+        if(msg.type === "string"){
+          console.log(msg.content)
+        }
+      };
+      WebSocketBetweenSpringboot.onclose = function(event) {
+        console.log('与 springboot 之间的连接已经关闭，2s后准备进行重新连接');
+        setTimeout(() => {
+          WebSocketBetweenSpringboot = null;
+          getMyWS();
+        }, 2000)
+      }
+    }
+  }
+  getMyWS()
 }
 
 var version;

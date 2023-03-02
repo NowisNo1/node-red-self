@@ -44,6 +44,7 @@ var activeNodesToFlow = {};
 
 var typeEventRegistered = false;
 
+
 function init(runtime) {
     if (started) {
         throw new Error("Cannot init without a stop");
@@ -270,6 +271,11 @@ function getFlows() {
 }
 
 async function start(type,diff,muteLog,isDeploy) {
+    /**
+     * @author Luo
+     * @createTime 2023-03-01
+     * 启动入口
+    */
     type = type || "full";
     started = true;
     state = 'start'
@@ -551,6 +557,17 @@ async function addFlow(flow, user) {
     if (!flow.hasOwnProperty('nodes')) {
         throw new Error('missing nodes property');
     }
+    /*
+        {
+          "nodes": [],    -> 流程中的节点
+          "info": "",     -> 流程中的详细描述
+          "disabled": boolean,  -> 是否禁用
+          "env": [{}],    -> 流程的环境变量
+          "config": ?,   -> 不必要
+          "label": ""    -> 流程名称
+        }
+     */
+
     flow.id = redUtil.generateId();
 
     var tabNode = {
@@ -596,6 +613,7 @@ async function addFlow(flow, user) {
             nodes.push(node);
         }
     }
+
     var newConfig = clone(activeConfig.flows);
     newConfig = newConfig.concat(nodes);
 

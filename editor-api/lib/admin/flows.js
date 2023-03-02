@@ -41,6 +41,7 @@ module.exports = {
         })
     },
     post: function(req,res) {
+
         var version = req.get("Node-RED-API-Version")||"v1";
         if (!/^v[12]$/.test(version)) {
             return res.status(400).json({code:"invalid_api_version", message:"Invalid API Version requested"});
