@@ -48,29 +48,40 @@ var editor;
  */
 function init(settings,_server,storage,runtimeAPI) {
     server = _server;
+
     if (settings.httpAdminRoot !== false) {
         adminApp = express();
 
         var cors = require('cors');
-        var corsHandler = cors({
-           origin: "*",
-           methods: "GET,PUT,POST,DELETE"
+      /**
+       * @createTime 2023-03-03
+       * @comment 所有请求会经过 corsHandler
+       */
+      var corsHandler = cors({
+           origin: "http://localhost:8000", // origin : "*"
+           methods: "GET,PUT,POST,DELETE",
+           credentials: true, // 开始没有
+           headers: "X-Access-Token, Content-Type, Authorization, Content-Length, X-Requested-With" // 开始没有
         });
         adminApp.use(corsHandler);
-
-        if (settings.httpAdminMiddleware) {
+      /**
+       * @createTime 2023-03-03
+       * @comment GET 请求会经过 httpAdminMiddleware
+       */
+      if (settings.httpAdminMiddleware) {
             if (typeof settings.httpAdminMiddleware === "function" || Array.isArray(settings.httpAdminMiddleware)) {
                 adminApp.use(settings.httpAdminMiddleware);
             }
         }
 
         var defaultServerSettings = {
-            "x-powered-by": false
+            "x-powered-by": false,
         }
         var serverSettings = Object.assign({},defaultServerSettings,settings.httpServerOptions||{});
         for (var eOption in serverSettings) {
             adminApp.set(eOption, serverSettings[eOption]);
         }
+
 
         auth.init(settings,storage);
 
@@ -102,7 +113,7 @@ function init(settings,_server,storage,runtimeAPI) {
             var editorApp = editor.init(server, settings, runtimeAPI);
             adminApp.use(editorApp);
         }
-
+        console.log("settings ->", settings.httpAdminCors)
         if (settings.httpAdminCors) {
             var corsHandler = cors(settings.httpAdminCors);
             adminApp.use(corsHandler);
